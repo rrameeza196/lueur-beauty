@@ -2,7 +2,8 @@
 
 A full-stack cosmetics e-commerce website built with **PHP, MySQL, and Docker**.
 
-![Lueur Beauty](https://images.unsplash.com/photo-1457972729786-0411a3b2b626?auto=format&fit=crop&w=1200&q=80)
+<img width="947" height="439" alt="image" src="https://github.com/user-attachments/assets/27f0904f-8748-47bb-bbf4-318ee213ce64" />
+
 
 ---
 
