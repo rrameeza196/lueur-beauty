@@ -153,10 +153,7 @@ order_items  (id, order_id, product_id, name, price, qty, shade)
 ## 👩‍💻 Developer
 
 **Rameeza** — Full Stack Developer  
-GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+GitHub: (https://github.com/rrameeza196)
 
 ---
 
-## 📄 License
-
-MIT License — feel free to use this project!
