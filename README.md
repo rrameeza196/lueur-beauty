@@ -84,8 +84,8 @@ docker compose up --build
 | Field | Value |
 |-------|-------|
 | URL | http://localhost:8080 → Footer → "Admin login" |
-| Username | `Rameeza` |
-| Password | `1234` |
+| Username | `admin` |
+| Password | `changeme` |
 
 ---
 
