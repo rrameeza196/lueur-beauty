@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: lueur_app
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: makeup123
+      DB_NAME: makeup_db
+    volumes:
+      - .:/var/www/html
+      - php_sessions:/var/lib/php/sessions
+    networks:
+      - lueur_net
+
+  db:
+    image: mysql:8.0
+    container_name: lueur_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: makeup123
+      MYSQL_DATABASE: makeup_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pmakeup123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - lueur_net
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lueur_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: makeup123
+    depends_on:
+      - db
+    networks:
+      - lueur_net
+
+volumes:
+  db_data:
+  php_sessions:
+
+networks:
+  lueur_net:
+    driver: bridge
