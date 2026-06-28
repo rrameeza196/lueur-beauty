@@ -52,9 +52,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
 
--- Admin: Maryam / 1234 (plain text, api.php checks both plain and bcrypt)
-INSERT INTO admin_users (username, password) VALUES ('Rameeza', '1234');
-
 -- Sample products
 INSERT INTO products (name,kind,category,description,price,original_price,stock,shade_hex,image_url,reviews) VALUES
 ('Petal Glow Lip Oil',       'Lip oil',      'Lips',   'A sheer glossy oil that conditions and adds the prettiest flush.',        24.00, 30.00, 80, '#D98C7A', 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=600&q=80', 412),
