@@ -1,19 +1,13 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.1-apache
 
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
-
-RUN apk add --no-cache nginx supervisor
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN a2dismod mpm_event || true
+RUN a2enmod mpm_prefork rewrite mysqli
+RUN docker-php-ext-install mysqli
 
 COPY . /var/www/html/
 RUN rm -f /var/www/html/index.html
-RUN mkdir -p /run/nginx
 RUN chown -R www-data:www-data /var/www/html
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
-RUN mkdir -p /etc/supervisor/conf.d
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 EXPOSE 80
-
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
