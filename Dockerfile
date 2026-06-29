@@ -13,6 +13,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 80
+EXPOSE 9000
 
 CMD sh -c "php-fpm -D && nginx -g 'daemon off;'"
